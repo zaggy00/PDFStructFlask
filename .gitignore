@@ -32,3 +32,12 @@ instance/
 
 # Jupyter Notebook
 .ipynb_checkpoints/
+
+# Flask
+instance/
+.webassets-cache
+
+# HTML, CSS, JavaScript
+*.html~
+*.css~
+*.js~
