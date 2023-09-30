@@ -41,3 +41,69 @@ instance/
 *.html~
 *.css~
 *.js~
+
+# NodeJS
+node_modules/
+
+# Yarn
+.yarn/
+.yarnrc.yml
+
+# npm
+package-lock.json
+
+# Webpack
+webpack-stats.json
+
+# macOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+
+# JetBrains IDE
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Eclipse IDE
+.classpath
+.project
+.settings/
+
+# Vim
+*.swp
+
+# Sass
+.sass-cache/
+
+# Logs
+logs/
+*.log
+
+# Other
+*.bak
+*.swp
+*.swo
+*.tmp
+*.sublime-*
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.db
+*.jfm
+*.dat
+*.tmp
+*.bak
+*.swp
+*.swo
+*.kate-swp
+*.tmproj
+*.tmproject
+*.komodoproject
+*.sublime-workspace
+
+# Uploaded files
+uploads/

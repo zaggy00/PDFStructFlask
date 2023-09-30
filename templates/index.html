@@ -6,18 +6,44 @@
 </head>
 <body>
 
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">PDF Parser</a>
+</nav>
+
 <div class="container mt-5">
-  <form action="/parse_pdf" method="post">
-    <div class="form-group">
-      <label for="pdf_path">PDF Path:</label>
-      <input type="text" class="form-control" id="pdf_path" name="pdf_path">
+  <div class="card">
+    <div class="card-header">
+      Upload PDF
     </div>
-    <button type="submit" class="btn btn-primary">Parse PDF</button>
-  </form>
+    <div class="card-body">
+      <form action="/parse_pdf" method="post">
+        <div class="form-group">
+          <label for="pdf_path">PDF Path:</label>
+          <input type="text" class="form-control" id="pdf_path" name="pdf_path">
+        </div>
+        <button type="submit" class="btn btn-primary">Parse PDF</button>
+      </form>
+    </div>
+  </div>
 </div>
+
+<footer class="bg-light text-center text-lg-start mt-5">
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 PDF Parser
+  </div>
+</footer>
 
 </body>
 </html>
+
+<form action="/upload_pdf" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="pdf_file">Upload PDF:</label>
+    <input type="file" class="form-control" id="pdf_file" name="pdf_file">
+  </div>
+  <button type="submit" class="btn btn-primary">Upload and Parse PDF</button>
+</form>
+
 
 <!-- Add this script at the end of your HTML file -->
 <script>
