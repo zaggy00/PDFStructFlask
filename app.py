@@ -1,7 +1,10 @@
 from flask import Flask, request, jsonify
 import pdf_struct
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 
 @app.route('/upload_pdf', methods=['POST'])
