@@ -18,3 +18,27 @@
 
 </body>
 </html>
+
+<!-- Add this script at the end of your HTML file -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const pdfPath = document.getElementById("pdf_path").value;
+        fetch("/parse_pdf", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: `pdf_path=${pdfPath}`,
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          // Do something with the parsed PDF data
+        });
+      });
+    });
+  </script>
+  
