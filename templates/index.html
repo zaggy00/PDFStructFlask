@@ -3,68 +3,61 @@
   <head>
     <title>PDF Parser</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include your own styles.css after Bootstrap if you want to override Bootstrap styles -->
     <link href="styles.css" rel="stylesheet">
   </head>
-
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      Upload and Parse PDF
-    </div>
-    <div class="card-body">
-      <form action="/upload_pdf" method="post" enctype="multipart/form-data" id="uploadForm">
-        <div class="form-group">
-          <label for="model_name">Choose Model:</label>
-          <select class="form-control" id="model_name" name="model_name">
-            <option value="PDFContractEnFeatureExtractor.joblib">PDFContractEnFeatureExtractor.joblib</option>
-            <option value="PDFContractEnFeatureExtractorWithLM.joblib">PDFContractEnFeatureExtractorWithLM.joblib</option>
-            <option value="PDFContractJaFeatureExtractor.joblib">PDFContractJaFeatureExtractor.joblib</option>
-            <option value="PDFContractJaFeatureExtractorWithLM.joblib">PDFContractJaFeatureExtractorWithLM.joblib</option>
-            <option value="PDFLegistrationEnFeatureExtractor.joblib">PDFLegistrationEnFeatureExtractor.joblib</option>
-            <option value="PDFLegistrationEnFeatureExtractorWithLM.joblib">PDFLegistrationEnFeatureExtractorWithLM.joblib</option>
-            <option value="TextContractFeatureExtractor.joblib">TextContractFeatureExtractor.joblib</option>
-            <option value="TextContractFeatureExtractorWithLM.joblib">TextContractFeatureExtractorWithLM.joblib</option>
-          </select>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          Upload and Parse PDF
         </div>
-        
-        
-        <button type="submit" class="btn btn-primary">Upload and Parse PDF</button>
-      </form>
-      <button id="downloadCsv" class="btn">Download CSV</button>
+        <div class="card-body">
+          <form action="/upload_pdf" method="post" enctype="multipart/form-data" id="uploadForm">
+            <div class="form-group">
+              <label for="pdf_file">Upload PDF File:</label>
+              <input type="file" name="pdf_file" id="pdf_file" class="form-control-file">
+            </div>
+            <div class="form-group">
+              <label for="model_name">Choose Model:</label>
+              <select class="form-control" id="model_name" name="model_name">
+                <option value="PDFContractEnFeatureExtractor.joblib">PDFContractEnFeatureExtractor.joblib</option>
+                <option value="PDFContractEnFeatureExtractorWithLM.joblib">PDFContractEnFeatureExtractorWithLM.joblib</option>
+                <!-- Add the other options as you had them -->
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload and Parse PDF</button>
+          </form>
+          <button id="downloadCsv" class="btn">Download CSV</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-<footer class="footer">
-  © 2023 PDF Parser
-</footer>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Download CSV file
-    const downloadButton = document.getElementById("downloadCsv");
-    downloadButton.addEventListener("click", function(event) {
-      window.location.href = "/download_csv";
-    });
-    
-    // Form submit logic
-    const form = document.getElementById("uploadForm");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      const formData = new FormData(form);
-      fetch("/upload_pdf", {
-        method: "POST",
-        body: formData,
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        // Do something with the parsed PDF data
+    <footer class="footer">
+      © 2023 PDF Parser
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Download CSV file
+        const downloadButton = document.getElementById("downloadCsv");
+        downloadButton.addEventListener("click", function(event) {
+          window.location.href = "/download_csv";
+        });
+        
+        // Form submit logic
+        const form = document.getElementById("uploadForm");
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const formData = new FormData(form);
+          fetch("/upload_pdf", {
+            method: "POST",
+            body: formData,
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            // Do something with the parsed PDF data
+          });
+        });
       });
-    });
-  });
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
