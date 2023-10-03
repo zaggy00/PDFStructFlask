@@ -54,3 +54,6 @@ typing_extensions==4.8.0
 urllib3==2.0.5
 Werkzeug==2.3.7
 zipp==3.17.0
+pdf-struct==0.3.4
+# Python version
+python_version == 3.8.12

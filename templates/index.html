@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PDF Parser</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <title>PDF Parser</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include your own styles.css after Bootstrap if you want to override Bootstrap styles -->
+    <link href="styles.css" rel="stylesheet">
+  </head>
 
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="#">PDF Parser</a>
-</nav>
-
-<div class="container mt-5">
+<div class="container">
   <div class="card">
     <div class="card-header">
-      Upload PDF
+      Upload and Parse PDF
     </div>
     <div class="card-body">
-      <form action="/parse_pdf" method="post">
+      <form action="/upload_pdf" method="post" enctype="multipart/form-data" id="uploadForm">
         <div class="form-group">
-          <label for="pdf_path">PDF Path:</label>
-          <input type="text" class="form-control" id="pdf_path" name="pdf_path">
+          <label for="model_name">Choose Model:</label>
+          <select class="form-control" id="model_name" name="model_name">
+            <option value="PDFContractEnFeatureExtractor.joblib">PDFContractEnFeatureExtractor.joblib</option>
+            <option value="PDFContractEnFeatureExtractorWithLM.joblib">PDFContractEnFeatureExtractorWithLM.joblib</option>
+            <option value="PDFContractJaFeatureExtractor.joblib">PDFContractJaFeatureExtractor.joblib</option>
+            <option value="PDFContractJaFeatureExtractorWithLM.joblib">PDFContractJaFeatureExtractorWithLM.joblib</option>
+            <option value="PDFLegistrationEnFeatureExtractor.joblib">PDFLegistrationEnFeatureExtractor.joblib</option>
+            <option value="PDFLegistrationEnFeatureExtractorWithLM.joblib">PDFLegistrationEnFeatureExtractorWithLM.joblib</option>
+            <option value="TextContractFeatureExtractor.joblib">TextContractFeatureExtractor.joblib</option>
+            <option value="TextContractFeatureExtractorWithLM.joblib">TextContractFeatureExtractorWithLM.joblib</option>
+          </select>
         </div>
-        <button type="submit" class="btn btn-primary">Parse PDF</button>
+        
+        
+        <button type="submit" class="btn btn-primary">Upload and Parse PDF</button>
       </form>
+      <button id="downloadCsv" class="btn">Download CSV</button>
     </div>
   </div>
 </div>
 
-<footer class="bg-light text-center text-lg-start mt-5">
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2023 PDF Parser
-  </div>
+<footer class="footer">
+  © 2023 PDF Parser
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Download CSV file
+    const downloadButton = document.getElementById("downloadCsv");
+    downloadButton.addEventListener("click", function(event) {
+      window.location.href = "/download_csv";
+    });
+    
+    // Form submit logic
+    const form = document.getElementById("uploadForm");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const formData = new FormData(form);
+      fetch("/upload_pdf", {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        // Do something with the parsed PDF data
+      });
+    });
+  });
+</script>
 
 </body>
 </html>
-
-<form action="/upload_pdf" method="post" enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="pdf_file">Upload PDF:</label>
-    <input type="file" class="form-control" id="pdf_file" name="pdf_file">
-  </div>
-  <button type="submit" class="btn btn-primary">Upload and Parse PDF</button>
-</form>
-
-
-<!-- Add this script at the end of your HTML file -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const form = document.querySelector("form");
-      form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        const pdfPath = document.getElementById("pdf_path").value;
-        fetch("/parse_pdf", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: `pdf_path=${pdfPath}`,
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          // Do something with the parsed PDF data
-        });
-      });
-    });
-  </script>
-  

@@ -1,23 +1,34 @@
-__pycache__/
-*.pyc
-*.pyo
+# Python & Backend
 *.env
-
-# Python dependencies
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
+*.egg
 *.egg-info/
+dist/
+build/
+instance/
+uploads/
+/output/*
 
 # Virtual Environment
+.env
+.venv
 venv/
+ENV/
+env/
 
 # IDE files
 .vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
 
 # Logs and databases
 *.log
 *.sqlite3
+logs/
+*.db
 
 # OS generated files
 .DS_Store
@@ -25,85 +36,37 @@ venv/
 ._*
 .Spotlight-V100
 .Trashes
+.AppleDouble
+.LSOverride
 
-# Flask specific
-instance/
-.webassets-cache
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-
-# Flask
-instance/
-.webassets-cache
-
-# HTML, CSS, JavaScript
+# Front-end files
+node_modules/
+.yarn/
+.yarnrc.yml
+package-lock.json
+webpack-stats.json
 *.html~
 *.css~
 *.js~
 
-# NodeJS
-node_modules/
-
-# Yarn
-.yarn/
-.yarnrc.yml
-
-# npm
-package-lock.json
-
-# Webpack
-webpack-stats.json
-
-# macOS
-*.DS_Store
-
-# Windows
-Thumbs.db
-
-# JetBrains IDE
-.idea/
-
-# Visual Studio Code
-.vscode/
-
-# Eclipse IDE
-.classpath
-.project
-.settings/
-
-# Vim
-*.swp
-
-# Sass
-.sass-cache/
-
-# Logs
-logs/
-*.log
-
 # Other
+.ipynb_checkpoints/
+.sass-cache/
+*.pid
+*.lock
+*.csv
+*.json
+config.yaml
+secrets.json
+
+# Temporary, backup, and runtime files
+*.tmp
 *.bak
 *.swp
 *.swo
-*.tmp
-*.sublime-*
-*.suo
-*.user
-*.userosscache
-*.sln.docstates
-*.db
-*.jfm
+*.swn
 *.dat
-*.tmp
-*.bak
-*.swp
-*.swo
-*.kate-swp
+*.jfm
 *.tmproj
 *.tmproject
 *.komodoproject
-*.sublime-workspace
-
-# Uploaded files
-uploads/
